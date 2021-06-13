@@ -9,4 +9,4 @@ This has been solved by collaboration between:
 3. Basel Atallah
 4. Abdel Hadi Nofal
 
-Solving this lab take almost 5 hours.
+Solving this lab took almost 5 hours.

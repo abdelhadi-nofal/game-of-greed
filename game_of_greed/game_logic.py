@@ -85,7 +85,29 @@ class GameLogic :
                     score+=2400  
         return score
 
-        
+# Nofal---------------------------------
+   #output : an integer representing the roll's score according to rules of game.
+    @staticmethod
+    def  roll_dice (n):
+        randomlist = []
+        for i in range(1,n+1):
+            num = random.randint(1,6)
+            randomlist.append(num) 
+        return tuple(randomlist)   
+class Banker:
+    def __init__ (self):
+        self.shelved=0
+        self.balance=0
+    def shelf (self,points):
+        self.shelved=points 
+        return self.shelved
+    def bank (self):
+        self.balance=0
+        self.balance+=self.shelved
+        self.shelved=0
+        return self.balance
+    def clear_shelf (self):
+        self.shelved=0      
 
     
 

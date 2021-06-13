@@ -56,6 +56,34 @@ class GameLogic :
                 if i[0] == 6:
                     score+=1200  
 
+# Suhib----------------------
+            if i[1] ==5:
+                if i[0] == 1:
+                    score+=3000
+                if i[0] == 2:
+                    score+=600
+                if i[0] == 3:
+                    score+=900
+                if i[0] == 4:
+                    score+=1200
+                if i[0] == 5:
+                    score+=1500
+                if i[0] == 6:
+                    score+=1800  
+            if i[1] ==6:
+                if i[0] == 1:
+                    score+=4000
+                if i[0] == 2:
+                    score+=800
+                if i[0] == 3:
+                    score+=1200
+                if i[0] == 4:
+                    score+=1600
+                if i[0] == 5:
+                    score+=2000
+                if i[0] == 6:
+                    score+=2400  
+        return score
 
         
 

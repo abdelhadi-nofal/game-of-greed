@@ -1,6 +1,7 @@
 import random 
 from collections import Counter
 
+#hamza-----------------------------------------
 class GameLogic :
     
     @staticmethod 
@@ -27,8 +28,33 @@ class GameLogic :
                 if i[0]==5: 
                     score+= (i[1]*50)
             
-
-#hamza-----------------------------------------
+#basel ---------------------------
+            if i[1] ==3:
+                if i[0] == 1:
+                    score+=1000
+                if i[0] == 2:
+                    score+=200
+                if i[0] == 3:
+                    score+=300
+                if i[0] == 4:
+                    score+=400
+                if i[0] == 5:
+                    score+=500
+                if i[0] == 6:
+                    score+=600
+            if i[1] ==4:
+                if i[0] == 1:
+                    score+=2000
+                if i[0] == 2:
+                    score+=400
+                if i[0] == 3:
+                    score+=600
+                if i[0] == 4:
+                    score+=800
+                if i[0] == 5:
+                    score+=1000
+                if i[0] == 6:
+                    score+=1200  
 
 
         

@@ -10,3 +10,5 @@ This has been solved by collaboration between:
 4. Abdel Hadi Nofal
 
 Solving this lab took almost 5 hours.
+
+![PR](https://github.com/abdelhadi-nofal/game-of-greed/pull/5)

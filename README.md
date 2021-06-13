@@ -11,4 +11,6 @@ This has been solved by collaboration between:
 
 Solving this lab took almost 5 hours.
 
-https://github.com/abdelhadi-nofal/game-of-greed/pull/5
+
+![PR](https://github.com/abdelhadi-nofal/game-of-greed/pull/5)
+

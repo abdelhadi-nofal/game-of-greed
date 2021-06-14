@@ -5,7 +5,7 @@ from collections import Counter
 class GameLogic :
     
     @staticmethod 
-    def calculate_score (tupe):
+    def calculate_score(tupe):
         score =0  
         ctr = Counter(tupe)
         dice_common= ctr.most_common()
@@ -94,20 +94,26 @@ class GameLogic :
             num = random.randint(1,6)
             randomlist.append(num) 
         return tuple(randomlist)   
+
+
+
+
 class Banker:
     def __init__ (self):
         self.shelved=0
         self.balance=0
+
     def shelf (self,points):
-        self.shelved=points 
+        self.shelved += int(points)
         return self.shelved
+
     def bank (self):
-        self.balance=0
-        self.balance+=self.shelved
-        self.shelved=0
+        self.balance += self.shelved
+        self.shelved = 0
         return self.balance
+
     def clear_shelf (self):
-        self.shelved=0      
+        self.shelved = 0      
 
     
 

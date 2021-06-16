@@ -9,26 +9,42 @@ class Game:
         self.rolling_counter = 6
         self.round = 1
         self.bank = Banker()
+        self.unbanked =0
         self.bank_account = self.bank.bank()
 
-
-    def quitter(self):
-        input_dice = input("Enter dice to keep (no spaces), or (q)uit: ")
-        return input_dice 
     
+    def quitter1111(self):
+        input_dice = input("Enter dice to keep (no spaces), or (q)uit: ")
+        return self.continuing(input_dice)
+
+
     def roller_function(self):
         print(f"Starting round {self.round}")
         print(f"Rolling {self.rolling_counter} dice...")
         self.dice = self.roller(self.rolling_counter)
         dice_printable = ",".join([str(d) for d in self.dice])
         print(dice_printable)
-        return self.quitter()
+        unbanked = GameLogic.calculate_score(self.dice)
+        if unbanked == 0:
+            print("Zilch!!! Round over")
+            print(f"You banked {unbanked} points in round {self.round}")
+            self.round += 1
+            self.rolling_counter = 6
+            self.bank_account = self.bank.bank()
+            print(f"Total score is {self.bank_account} points")
+            self.roller_function()
+        else:
+            return self.quitter1111()
 
     def continuing(self, input_dice): 
         if input_dice == "q":
-            print(f"Thanks for playing. You earned {self.bank_account} points")
+            if self.bank_account != 0 or self.unbanked != 0:
+                print(f"Total score is {self.bank_account} points")  
+                print(f"Thanks for playing. You earned {self.bank_account} points")
+            else:
+                print(f"Thanks for playing. You earned {self.bank_account} points")
         else:
-
+            
             input_tuple = tuple([int(x) for x in list(input_dice)])
             ctr1 = Counter(input_tuple)
             dice_input_common= ctr1.most_common()
@@ -48,6 +64,7 @@ class Game:
                     self.rolling_counter -= 1
                 score = GameLogic.calculate_score(input_tuple)
                 unbanked = self.bank.shelf(score)
+                self.unbanked = unbanked
                 print(f"You have {unbanked} unbanked points and {self.rolling_counter} dice remaining")
                 user_input_2 = input("(r)oll again, (b)ank your points or (q)uit ")
                 if user_input_2 == "q": 
@@ -61,44 +78,46 @@ class Game:
                             dice_printable = ",".join([str(d) for d in self.dice])
                             print(dice_printable)
                             self.rolling_counter = 6
-                            self.continuing(self.quitter())
-
-                        print(f"Rolling {self.rolling_counter} dice...")
-                        self.dice = self.roller(self.rolling_counter)
-                        dice_printable = ",".join([str(d) for d in self.dice])
-                        print(dice_printable)
-                        score1 = GameLogic.calculate_score(self.dice)
-                        if score1 == 0:
-                            print("Zilch!!! Round over")
-                            self.bank.clear_shelf()
-                            print(f"You banked {self.bank_account} points in round {self.round}")
-                            self.round += 1
-                            self.rolling_counter = 6
-                            self.bank_account = self.bank.bank()
-                            print(f"Total score is {self.bank_account} points")
-                            input_dice = self.roller_function()
-                            # self.continuing(input_dice)
+                            self.quitter1111()
                         else:
-                            self.continuing(self.quitter())
+                            print(f"Rolling {self.rolling_counter} dice...")
+                            self.dice = self.roller(self.rolling_counter)
+                            dice_printable = ",".join([str(d) for d in self.dice])
+                            print(dice_printable)
+                            score1 = GameLogic.calculate_score(self.dice)
+                            if score1 == 0:
+                                print("Zilch!!! Round over")
+                                self.bank.clear_shelf()
+                                print(f"You banked {self.bank_account} points in round {self.round}")
+                                self.round += 1
+                                self.rolling_counter = 6
+                                self.bank_account = self.bank.bank()
+                                print(f"Total score is {self.bank_account} points")
+                                self.roller_function()
+                            else:
+                                self.quitter1111()
                     elif user_input_2 == "b":
                         print(f"You banked {unbanked} points in round {self.round}")
                         self.round += 1
                         self.rolling_counter = 6
                         self.bank_account = self.bank.bank()
                         print(f"Total score is {self.bank_account} points")
-                        input_dice = self.roller_function()
-                        if input_dice == "q":
+                        self.roller_function()
+                        
+                    elif user_input_2 == "q":
                             if self.bank_account != 0:
                                 print(f"Total score is {self.bank_account} points")  
-                                print(f"Thanks for playing. You earned {self.bank_account} points")  
-                        else:
-                            self.continuing(input_dice)
+                                print(f"Thanks for playing. You earned {self.bank_account} points")
+                            else:
+                                print(f"Thanks for playing. You earned {self.bank_account} points")
+
+                    
             else:
                 print("Cheater!!! Or possibly made a typo...")
                 dice_printable = ",".join([str(d) for d in self.dice])
                 print(dice_printable)
-                # self.rolling_counter -= 1
-                self.continuing(self.quitter())
+                self.quitter1111()
+                
                 
 
 
@@ -109,8 +128,8 @@ class Game:
         if user_input == "n" :
             print("OK. Maybe another time")
         else:
-            input_dice = self.roller_function()
-            input_dice = self.continuing(input_dice)
+            self.roller_function()
+            
             
 
 

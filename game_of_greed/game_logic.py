@@ -3,7 +3,19 @@ from collections import Counter
 
 #hamza-----------------------------------------
 class GameLogic :
-    
+    def get_scorers(dice):
+        # version_3
+        all_dice_score = GameLogic.calculate_score(dice) #1500
+        if all_dice_score == 0:
+            return tuple()
+        scorers = []
+        for i in range(len(dice)):
+            sub_roll = dice[:i] + dice[i + 1 :]
+            sub_score = GameLogic.calculate_score(sub_roll)
+            if sub_score != all_dice_score:
+                scorers.append(dice[i])
+        return tuple(scorers)
+        
     @staticmethod 
     def calculate_score(tupe):
         score =0  

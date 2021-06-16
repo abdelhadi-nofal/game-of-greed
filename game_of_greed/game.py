@@ -4,7 +4,7 @@ from game_of_greed.game_logic import GameLogic, Banker
 
 class Game:
     def __init__(self, roller = None):
-        self.roller = roller
+        self.roller = roller or GameLogic.roll_dice
         self.dice = ()
         self.rolling_counter = 6
         self.round = 1
@@ -32,9 +32,12 @@ class Game:
             self.rolling_counter = 6
             self.bank_account = self.bank.bank()
             print(f"Total score is {self.bank_account} points")
+
             self.roller_function()
         else:
-            return self.quitter1111()
+            if self.round <=100:
+                return self.quitter1111()
+        
 
     def continuing(self, input_dice): 
         if input_dice == "q":
@@ -66,6 +69,10 @@ class Game:
                 unbanked = self.bank.shelf(score)
                 self.unbanked = unbanked
                 print(f"You have {unbanked} unbanked points and {self.rolling_counter} dice remaining")
+                if self.rolling_counter == 0:
+                    self.rolling_counter = 6
+                    if self.round <=100:
+                        self.roller_function()
                 user_input_2 = input("(r)oll again, (b)ank your points or (q)uit ")
                 if user_input_2 == "q": 
                     print(f"Total score is {self.bank_account} points")  
@@ -78,7 +85,8 @@ class Game:
                             dice_printable = ",".join([str(d) for d in self.dice])
                             print(dice_printable)
                             self.rolling_counter = 6
-                            self.quitter1111()
+                            if self.round <=100:
+                                self.quitter1111()
                         else:
                             print(f"Rolling {self.rolling_counter} dice...")
                             self.dice = self.roller(self.rolling_counter)
@@ -93,16 +101,19 @@ class Game:
                                 self.rolling_counter = 6
                                 self.bank_account = self.bank.bank()
                                 print(f"Total score is {self.bank_account} points")
-                                self.roller_function()
+                                if self.round <=100:
+                                    self.roller_function()
                             else:
-                                self.quitter1111()
+                                if self.round <=100:
+                                    self.quitter1111()
                     elif user_input_2 == "b":
                         print(f"You banked {unbanked} points in round {self.round}")
                         self.round += 1
                         self.rolling_counter = 6
                         self.bank_account = self.bank.bank()
                         print(f"Total score is {self.bank_account} points")
-                        self.roller_function()
+                        if self.round <100:
+                            self.roller_function()
                         
                     elif user_input_2 == "q":
                             if self.bank_account != 0:
@@ -116,7 +127,8 @@ class Game:
                 print("Cheater!!! Or possibly made a typo...")
                 dice_printable = ",".join([str(d) for d in self.dice])
                 print(dice_printable)
-                self.quitter1111()
+                if self.round <=100:
+                    self.quitter1111()
                 
                 
 

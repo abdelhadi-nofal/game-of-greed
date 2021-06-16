@@ -36,7 +36,7 @@ class BasePlayer:
                 pass
             mega_total += game.bank_account
             player.reset()
-        print(f"{num_games} games (maybe) played with average score of {game.bank_account // 100}")
+        print(f"{num_games} games (maybe) played with average score of {game.bank_account // num_games}")
 
 class NervousNellie(BasePlayer):
     def __init__(self):

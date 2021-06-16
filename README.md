@@ -12,5 +12,7 @@ This has been solved by collaboration between:
 Solving this lab took almost 5 hours.
 
 
-[PR](https://github.com/abdelhadi-nofal/game-of-greed/pull/6)
+
+[PR](https://github.com/abdelhadi-nofal/game-of-greed/pull/7)
+
 
